@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} | articles in the "{{ subcategory }}" subcategory{% endblock %}
+{% block ephemeral_nav %}
+                {{ ephemeral_nav_link(subcategory.shortname, output_file, True) }}
+{% endblock %}
