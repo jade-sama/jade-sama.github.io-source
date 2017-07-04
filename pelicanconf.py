@@ -4,14 +4,13 @@ from __future__ import unicode_literals
 import sys
 sys.path.append('../pelican-plugins/')
 from embedly_cards import EmbedlyCardExtension
-MD_EXTENSIONS = ['codehilite(css_class=highlight)',
-                 'extra',
+MD_EXTENSIONS= ['codehilite(css_class=highlight)',
                  EmbedlyCardExtension()]
 
 AUTHOR = u'x100krocia'
 SITENAME = u'Jadę Sama'
 SITEURL = ''
-OUTPUT_PATH='../../jade-sama.github.io'
+OUTPUT_PATH='output'
 
 PATH = 'content'
 STATIC_PATHS = ['images', 'maps']
@@ -71,12 +70,11 @@ DEFAULT_PAGINATION = 20
 THEME = "../my-pelican-themes/blue-penguin-modified"
 DIRECT_TEMPLATES = ['index', 'categories', 'subcategories','tags']
 
-PLUGIN_PATH = '../pelican-plugins'
+PLUGIN_PATHS = ['../pelican-plugins']
 PLUGINS = ['subcategory',
-           'disqus_static',
            'photos']
 
-PHOTO_LIBRARY = "../../../../Pictures/blogs"
+PHOTO_LIBRARY = "~/Pictures/blogs"
 PHOTO_GALLERY = (1024, 768, 80)
 PHOTO_ARTICLE = (760, 506, 80)
 PHOTO_THUMB = (192, 144, 60)
