@@ -3,10 +3,10 @@
 {% block head %}
     {{ super() }}
     {% if article.tags %}
-    <meta name="keywords" content="{{ article.tags|join(",") }}" />
+        <meta name="keywords" content="{{ article.tags|join(",") }}" />
     {% endif %}
     {% if article.description %}
-    <meta name="description" content="{{ article.description }}" />
+        <meta name="description" content="{{ article.description }}" />
     {% endif %}
 {% endblock %}
 
@@ -14,19 +14,40 @@
 
 {% block content %}
 
+    <h4 class="date">{{ article.date.strftime("%b %d, %Y") }}</h4>
+    <h2 class="title">{{ article.title }}</h2>
+    {{ article.content }}
+    <div class="clear"></div>
 
+    {% if article.photo_gallery %}
+        <div class="polaroid-images">
+        {% for title, gallery in article.photo_gallery %}
+            <h2>Zdjęcia</h2>
+            {% for name, photo, thumb, exif, caption in gallery %}
+                <a href="{{ SITEURL }}/{{ photo }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ photo }}"></a>
+            {% endfor %}
+         {% endfor %}
+        </div>
+    {% endif %}
 
-{% if article.photo_gallery %}
-<div class="gallery">
-		{% for title, gallery in article.photo_gallery %}
-			<h1>{{ title }}</h1>
-				{% for name, photo, thumb, exif, caption in gallery %}
-						<a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
-				{% endfor %}
-		{% endfor %}
-</div>
-{% endif %}
-{% include "article_stub.html" %}
+    <div class="info">
+        {% if article.category.name != DEFAULT_CATEGORY %}
+            &nbsp;&middot;&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag">{{ article.category }}</a>
+        {% endif %}
+        {% if article.subcategories %}
+            &nbsp;&middot;
+            {% for s in article.subcategories %}
+                &nbsp;<a href="{{ SITEURL }}/{{ s.url }}">{{ s.shortname }}</a>
+            {% endfor %}
+        {% endif %}
+        {% if article.tags %}
+            &nbsp;&middot;
+            {% for t in article.tags %}
+                &nbsp;<a href="{{ SITEURL }}/{{ t.url }}" class="tags{% if tag and tag.name == t.name %} selected{% endif %}">{{ t }}</a>
+            {% endfor %}
+        {% endif %}
+    </div>
+
 {% endblock %}
 
 {% block ephemeral_nav %}
