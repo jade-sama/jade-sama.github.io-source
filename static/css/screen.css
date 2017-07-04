@@ -38,6 +38,7 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 body {
+    background: url(../images/background.jpg);
     line-height: 1;
 }
 ol, ul {
@@ -177,7 +178,7 @@ img {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
     border-radius: 0.3em;
     max-width: 100%;
-    display: block;
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
 }
@@ -255,7 +256,7 @@ header .header_box {
     padding-top: 4.5em;
 }
 header h1 {
-    font-size: 1.5em;
+    font-size: 2em;
     line-height: 1em;
     margin: 0;
 }
@@ -326,6 +327,7 @@ code {
 
 footer {
     font-family: sans-serif;
+    font-size: 75%;
     line-height: 2.5em;
     text-align: center;
     color: #BBB;
