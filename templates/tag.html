@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 {% block title %}{{ SITENAME }} | articles tagged "{{ tag }}"{% endblock %}
 {% block ephemeral_nav %}
                 {{ ephemeral_nav_link(tag, output_file, True) }}
