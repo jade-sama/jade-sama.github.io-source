@@ -1,5 +1,10 @@
             {% if not articles_page or first_article_of_day %}
-            <h4 class="date">{{ article.date.strftime("%b %d, %Y") }}</h4>
+            <h4 class="date">{{ article.date.strftime("%b %d, %Y") }}
+                        {% if article.photo_image %}<a href="{{ SITEURL }}/{{ article.url }}"><img src="{{ SITEURL }}/{{ article.photo_image[2] }}"
+                        	style="display: inline; float: right; margin: 2px 0 2ex 4ex;" /></a>
+                        {% endif %}
+
+            </h4>
             {% endif %}
 
             <article class="post">
@@ -13,8 +18,7 @@
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="{{ SITEURL }}/{{ article.url }}">posted at {{ article.date.strftime("%H:%M") }}</a>
-                    {% if article.category.name != "misc" %}
+                    {% if article.category.name != DEFAULT_CATEGORY %}
                     &nbsp;&middot;&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag">{{ article.category }}</a>
                     {% endif %}
                     {% if article.tags %}
