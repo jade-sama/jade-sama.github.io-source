@@ -50,6 +50,7 @@ changes by email (which you can find on my github profile).
 * [Grimbox](https://github.com/Grimbox)
 * [ix5](https://github.com/ix5)
 * [dn0](https://github.com/dn0)
+* [DorotaW](https://github.com/DorotaW)
 
 ## License
 Public domain.
