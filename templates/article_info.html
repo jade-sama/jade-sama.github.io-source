@@ -1,0 +1,17 @@
+<div class="info">
+    {% if article.category.name != DEFAULT_CATEGORY %}
+        &nbsp;&middot;&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag">{{ article.category }}</a>
+    {% endif %}
+    {% if article.subcategories %}
+        &nbsp;&middot;
+        {% for s in article.subcategories %}
+            &nbsp;<a href="{{ SITEURL }}/{{ s.url }}">{{ s.shortname }}</a>
+        {% endfor %}
+    {% endif %}
+    {% if article.tags %}
+        &nbsp;&middot;
+        {% for t in article.tags %}
+            &nbsp;<a href="{{ SITEURL }}/{{ t.url }}" class="tags{% if tag and tag.name == t.name %} selected{% endif %}">{{ t }}</a>
+        {% endfor %}
+    {% endif %}
+</div>
