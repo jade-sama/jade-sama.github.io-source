@@ -93,6 +93,11 @@ h1, h2, h3 {
     margin: 1em 0;
 }
 
+h4, h5, h6 {
+    color: #CCC;
+    margin: 1em 0;
+}
+
 img, p, .post > .highlight, .highlighttable, h4, h5, h6 {
     margin-top: 1.2em;
 }
@@ -103,14 +108,40 @@ blockquote {
     border-left: 1px solid #EEE;
 }
 
+.embeded-map {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  padding-bottom: 66.66%;
+}
+
+.embeded-map iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .date {
     color: #CCC;
     float: left;
     clear: both;
     width: 130px;
-    font-size: 1.5em;
+    font-size: 1.0em;
     line-height: 1em;
-    margin: 0 20px 1em 0;
+    margin: 1.8em 0;
+}
+
+.thumbnail {
+    color: #CCC;
+    float: left;
+    clear: both;
+    width: 130px;
+    font-size: 1.0em;
+    line-height: 1em;
+    margin: .3em 0;
 }
 
 .info {
@@ -118,10 +149,26 @@ blockquote {
     font-family: sans-serif;
     text-align: right;
     color: #BBB;
+    font-size: 0.75em
 }
 .info a {
+    background: #CCC;
+    color: #FFF;
+    display: inline-block;
+    padding: 0 .3em;
+    border: 1px transparent solid;
+    border-radius: 5px;
+    margin: 0 0 0.3em 0;
+}
+
+.info a:hover {
+    background: inherit;
     color: inherit;
 }
+.info a.selected {
+    border: 1px #999 solid;
+}
+
 .info a.tags {
     background: #CCC;
     color: #FFF;
@@ -140,6 +187,7 @@ blockquote {
 }
 
 .post {
+    position: relative;
     margin: 0 0 4.5em 150px;
 }
 .post.archives {
@@ -184,73 +232,62 @@ img {
     margin-right: auto;
 }
 
-.polaroid-images a
-{
-	background: white;
-	display: inline;
-	float: left;
+div.gallery {
+    background: white;
 	margin: 0 15px 30px;
 	padding: 10px 10px 25px;
-	text-align: center;
-	text-decoration: none;
 	-webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 	-webkit-transition: all .15s linear;
 	-moz-transition: all .15s linear;
-	transition: all .15s linear;
-	z-index:0;
-        position:relative;
 }
 
-.polaroid-images a:after {
-	color: #586E75;
-	font-size: 20px;
-	content: attr(caption);
-	position: relative;
-	top:15px;
+div.gallery:hover {
+    border: 2px solid #999;
 }
 
-.polaroid-images img {
-	display: block;
-	width: inherit;
+div.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 0em;
 }
 
-.polaroid-images a:nth-child(2n)
-{
-	-webkit-transform: rotate(4deg);
-	-moz-transform: rotate(4deg);
-	transform: rotate(4deg);
-}
-.polaroid-images a:nth-child(3n) {
-	-webkit-transform: rotate(-24deg);
-	-moz-transform: rotate(-24deg);
-	transform: rotate(-24deg);
-}
-.polaroid-images a:nth-child(4n)
-{
-	-webkit-transform: rotate(14deg);
-	-moz-transform: rotate(14deg);
-	transform: rotate(14deg);
-}
-.polaroid-images a:nth-child(5n)
-{
-	-webkit-transform: rotate(-18deg);
-	-moz-transform: rotate(-18deg);
-	transform: rotate(-18deg);
+div.desc {
+    padding: 15px;
+    text-align: center;
+    color: #586E75;
+    font-size: 0.75em;
 }
 
-.polaroid-images a:hover{
-	-webkit-transform: rotate(0deg);
-	-moz-transform: rotate(0deg);
-        transform: rotate(0deg);
-	-webkit-transform: scale(1.2);
-	-moz-transform: scale(1.2);
-        transform: scale(1.2);
-	z-index:10;
-	-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .7);
-	-moz-box-shadow: 0 10px 20px rgba(0,0,0,.7);
-        box-shadow: 0 10px 20px rgba(0,0,0,.7);
+* {
+    box-sizing: border-box;
+}
+
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 33.3333333%;
+}
+
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+}
+
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /*sub and sup stolen from Twitter bootstrap.*/
