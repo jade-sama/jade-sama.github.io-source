@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} | Miejsca {% endblock %}
+
 {% block content %}
-<ul>
-{% for subcategory, articles in articles.subcategories %}
-    <li>{{ subcategory }}</li>
-{% endfor %}
-</ul>
+  <div class="page">
+    <h2>Miejsca</h2>
+    <ul>
+        {% for group in articles | sort (attribute="date", reverse = True) | groupby('subcategories') %}
+            <h4><li><a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a></li></h4>
+        {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
