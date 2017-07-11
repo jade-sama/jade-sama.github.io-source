@@ -22,5 +22,5 @@ DELETE_OUTPUT_DIRECTORY = False
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""
+DISQUS_SITENAME = "https-jade-sama-github-io"
+GOOGLE_ANALYTICS = "UA-102256828-1"
