@@ -1,2 +1,41 @@
 {% extends "base.html" %}
-{% block title %}{{ SITENAME }} | articles in the "{{ category }}" category{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <meta name="keywords" content="{{ category }}" />
+{% endblock %}
+
+{% block title %}{{ SITENAME }} | {{ category }}{% endblock %}
+
+{% block content %}
+
+  <div class="page">
+      <h2>{{ category }}</h2>
+
+      <div class="embeded-map">
+        <iframe src="{{ SITEURL }}/maps/{{ category.slug }}.html" allowfullscreen width="800" height="600"></iframe>
+      </div>
+
+      <ul>
+        {% for group in articles | sort (attribute="date") | groupby('subcategories') %}
+            <h4><li><a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a></li></h4>
+        {% endfor %}
+      </ul>
+
+      <h4>
+        {% for group in articles | sort (attribute="date") | groupby('subcategories') %}
+            <li><a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a></li>
+            {% if loop.last %}
+            {% else %} ->
+            {% endif %}
+        {% endfor %}
+      </h4>
+
+      <h2>Trasa</h2>
+      {% include 'article_list.html' %}
+
+      {% include 'comments.html' %}
+
+  </div>
+
+{% endblock %}
