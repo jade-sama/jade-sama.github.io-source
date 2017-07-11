@@ -14,39 +14,32 @@
 
 {% block content %}
 
-    <h4 class="date">{{ article.date.strftime("%b %d, %Y") }}</h4>
-    <h2 class="title">{{ article.title }}</h2>
-    {{ article.content }}
-    <div class="clear"></div>
+    {%   include "article_info.html" %}
 
-    {% if article.photo_gallery %}
-        <div class="polaroid-images">
-        {% for title, gallery in article.photo_gallery %}
-            <h2>Zdjęcia</h2>
-            {% for name, photo, thumb, exif, caption in gallery %}
-                <a href="{{ SITEURL }}/{{ photo }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ photo }}"></a>
-            {% endfor %}
-         {% endfor %}
-        </div>
-    {% endif %}
+    <h4 class="date">{{ article.date.strftime("%d %b %Y").upper() }}</h4>
 
-    <div class="info">
-        {% if article.category.name != DEFAULT_CATEGORY %}
-            &nbsp;&middot;&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag">{{ article.category }}</a>
+    <article class="post">
+        <h2 class="title">{{ article.title }}</h2>
+
+        {{ article.content }}
+
+        {% if article.photo_gallery %}
+            {% for title, gallery in article.photo_gallery %}
+                <h2>Zdjęcia</h2>
+                {% for name, photo, thumb, exif, caption in gallery %}
+                    {% if name != 'thumbs.jpg' %}
+                        <div class="responsive">
+                            <div class="gallery">
+                                <a href="{{ SITEURL }}/{{ photo }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ photo }}"></a>
+                                <div class="desc">{{ caption }}</div>
+                           </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+             {% endfor %}
         {% endif %}
-        {% if article.subcategories %}
-            &nbsp;&middot;
-            {% for s in article.subcategories %}
-                &nbsp;<a href="{{ SITEURL }}/{{ s.url }}">{{ s.shortname }}</a>
-            {% endfor %}
-        {% endif %}
-        {% if article.tags %}
-            &nbsp;&middot;
-            {% for t in article.tags %}
-                &nbsp;<a href="{{ SITEURL }}/{{ t.url }}" class="tags{% if tag and tag.name == t.name %} selected{% endif %}">{{ t }}</a>
-            {% endfor %}
-        {% endif %}
-    </div>
+    </article>
+{% include 'comments.html' %}
 
 {% endblock %}
 
