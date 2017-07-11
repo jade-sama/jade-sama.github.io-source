@@ -1,5 +1,14 @@
 {% extends "base.html" %}
-{% block title %}{{ SITENAME }} | articles tagged "{{ tag }}"{% endblock %}
+
+{% block title %}{{ SITENAME }} | {{ tag }}{% endblock %}
+
+{% block content %}
+  <div class="page">
+    <h2>{{ tag }}</h2>
+    {% include 'article_list.html' %}
+  </div>
+{% endblock %}
+
 {% block ephemeral_nav %}
-                {{ ephemeral_nav_link(tag, output_file, True) }}
+  {{ ephemeral_nav_link(tag, output_file, True) }}
 {% endblock %}
