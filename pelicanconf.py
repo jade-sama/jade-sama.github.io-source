@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+
 import sys
 sys.path.append('../pelican-plugins/')
+
 from embedly_cards import EmbedlyCardExtension
 MD_EXTENSIONS= ['codehilite(css_class=highlight)',
                  EmbedlyCardExtension()]
@@ -45,6 +47,7 @@ SUBCATEGORY_SAVE_AS = 'wyprawy/{fullurl}.html'
 TIMEZONE = 'Asia/Singapore'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 DEFAULT_LANG = u'pl'
+LOCALE=['plk_pol','pl_PL']
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
