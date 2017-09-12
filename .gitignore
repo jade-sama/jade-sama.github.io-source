@@ -1,3 +1,4 @@
 output
 *.pyc
 /*.bat
+_mdwriter.cson
