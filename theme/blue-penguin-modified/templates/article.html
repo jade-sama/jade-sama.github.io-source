@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    {% if article and article.tags %}
+        <meta name="keywords" content="{{ article.tags|join(",") }}" />
+    {% endif %}
+    {% if article and article.description %}
+        <meta name="description" content="{{ article.description }}" />
+    {% endif %}
+{% endblock %}
+
+{% block title %}{{ SITENAME }} | {{ article.title }}{% endblock %}
+
+{% block content %}
+
+    {%   include "article_info.html" %}
+
+    <h4 class="date">
+      {{ article.date.strftime("%d %b %Y").upper() }}
+      {% if article and article.mapimage %}
+        <a href="{{ SITEURL }}/{{ article.mapimage }}">
+            <img src="{{ SITEURL }}/{{ article.mapimage }}"/>
+        </a>
+      {% endif %}
+    </h4>
+
+    <article class="post">
+        <h2 class="title">{{ article.title }}</h2>
+
+        {{ article.content }}
+
+        {% if article and article.photo_gallery %}
+            {% for title, gallery in article.photo_gallery %}
+                <h2>Zdjęcia</h2>
+                <div class="Container">
+                    <ul class="Gallery">
+                        {% for name, photo, thumb, exif, caption in gallery | sort(attribute='0') %}
+                        {% if name != 'thumbs.jpg' %}
+                            <li class="Gallery-item">
+                                <a href="{{ SITEURL }}/{{ photo }}">
+                                    <figure>
+                                        <img src="{{ SITEURL }}/{{ photo }}"/>
+                                        <figcaption><p>{{ caption }}</p></figcaption>
+                                    </figure>
+                                </a>
+                           </li>
+                        {% endif %}
+                        {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </article>
+
+{% include 'comments.html' %}
+
+{% endblock %}
+
+{% block ephemeral_nav %}
+                {{ ephemeral_nav_link(article.title, output_file, True) }}
+{% endblock %}

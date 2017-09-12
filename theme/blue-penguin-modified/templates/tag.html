@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} | {{ tag.name.title() }}{% endblock %}
+
+{% block content %}
+  <div class="page">
+    <h2>{{ tag.name.title() }}</h2>
+    <div class="Container">
+      <ul class="Gallery">
+        {% for article in articles | sort (attribute="date") %}
+              <li class="Gallery-item">
+                <a href="{{ SITEURL }}/{{ article.url }}">
+                  <figure>
+                    {% if article and article.photo_image %}
+                      <img src="{{ SITEURL }}/{{ article.photo_image[2] }}" alt="{{ article.date.strftime("%d %b %Y").upper() }} : {{ article.title }}"/>
+                    {% else %}
+                      <img src="{{ SITEURL }}/{{ article.mapimage }}" alt="{{ article.date.strftime("%d %b %Y").upper() }} : {{ article.title }}" width="198px" height="108px"/>
+                    {% endif %}
+                    <figcaption><p>{{ article.date.strftime("%d %b %Y").upper() }} : {{ article.title }}</p></figcaption>
+                  </figure>
+                </a>
+              </li>
+        {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block ephemeral_nav %}
+  {{ ephemeral_nav_link(tag.name.title(), output_file, True) }}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <meta name="keywords" content="{{ category }}" />
+{% endblock %}
+
+{% block title %}{{ SITENAME }} | {{ category }}{% endblock %}
+
+{% block content %}
+
+  <div class="page">
+      <h2>{{ category }}</h2>
+
+      <div class="embeded-map">
+        <iframe src="{{ SITEURL }}/maps/{{ category.slug }}.html" allowfullscreen width="600" height="400"></iframe>
+      </div>
+
+      <div class="arrows">
+        {% for group in articles | sort (attribute="date") | groupby('subcategories') %}
+            <a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a>
+            {% if loop.last %}
+            {% else %} ->
+            {% endif %}
+        {% endfor %}
+      </div>
+
+      {% include 'article_list.html' %}
+      {% include 'comments.html' %}
+    </div?
+
+{% endblock %}

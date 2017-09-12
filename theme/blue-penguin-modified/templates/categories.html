@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} | Wyprawy {% endblock %}
+
+{% block content %}
+  <div class="page">
+    <h2>Wyprawy</h2>
+    <ul>
+        {% for group in articles | sort (attribute="date", reverse = True) | groupby('category') %}
+            <h4><li><a href="{{ SITEURL }}/{{ group.grouper.url}}">{{ group.grouper }}</a></li></h4>
+        {% endfor %}
+      </ul>
+  </div>
+{% endblock %}
