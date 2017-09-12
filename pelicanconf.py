@@ -6,8 +6,15 @@ import sys
 sys.path.append('../pelican-plugins/')
 
 from embedly_cards import EmbedlyCardExtension
-MD_EXTENSIONS= ['codehilite(css_class=highlight)',
-                 EmbedlyCardExtension()]
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+    },
+    'output_format': 'html5',
+    'extensions': [EmbedlyCardExtension()],
+}
 
 AUTHOR = u'x100krocia'
 SITENAME = u'Jadę Sama'
@@ -68,14 +75,15 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 # Social widget
 SOCIAL = (('github', 'http://github.com/jade-sama'),)
 
-DEFAULT_PAGINATION = 20
+DEFAULT_PAGINATION = 100
 
 THEME = "../my-pelican-themes/blue-penguin-modified"
 DIRECT_TEMPLATES = ['index', 'categories', 'subcategories','tags']
 
 PLUGIN_PATHS = ['../pelican-plugins']
 PLUGINS = ['subcategory',
-           'photos']
+           'photos',
+           'embedly_cards']
 
 PHOTO_LIBRARY = "~/Pictures/blogs"
 PHOTO_GALLERY = (1024, 768, 80)
