@@ -1,6 +1,6 @@
 Title: O blogu
 Date: 2017-04-28
-slug: about
+Slug: about
 Summary: Blog jest próbą dokumentacji mojej wyprawy do Azji w 2017 podczas urlopu "sabbatical", głównie żeby podzielić sie zdjęciami i obecną lokalizacją z rodziną i znajomymi.
 
 Blog jest próbą dokumentacji mojej wyprawy do Azji w 2017 podczas urlopu **"sabbatical"** ,głównie żeby podzielić sie zdjęciami i obecną lokalizacją z rodziną i znajomymi.
