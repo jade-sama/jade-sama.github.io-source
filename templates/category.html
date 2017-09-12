@@ -13,29 +13,20 @@
       <h2>{{ category }}</h2>
 
       <div class="embeded-map">
-        <iframe src="{{ SITEURL }}/maps/{{ category.slug }}.html" allowfullscreen width="800" height="600"></iframe>
+        <iframe src="{{ SITEURL }}/maps/{{ category.slug }}.html" allowfullscreen width="600" height="400"></iframe>
       </div>
 
-      <ul>
+      <div class="arrows">
         {% for group in articles | sort (attribute="date") | groupby('subcategories') %}
-            <h4><li><a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a></li></h4>
-        {% endfor %}
-      </ul>
-
-      <h4>
-        {% for group in articles | sort (attribute="date") | groupby('subcategories') %}
-            <li><a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a></li>
+            <a href="{{ SITEURL }}/{{ group.grouper[0].url}}">{{ group.grouper[0].shortname }}</a>
             {% if loop.last %}
             {% else %} ->
             {% endif %}
         {% endfor %}
-      </h4>
+      </div>
 
-      <h2>Trasa</h2>
       {% include 'article_list.html' %}
-
       {% include 'comments.html' %}
-
-  </div>
+    </div?
 
 {% endblock %}

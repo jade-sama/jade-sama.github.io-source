@@ -5,9 +5,12 @@
     {% for group in articles | sort (attribute="date", reverse = True) | groupby('category') %}
         <h2><a href="{{ SITEURL }}/{{ group.grouper.url}}">{{ group.grouper }}</a></h2>
         <div class="embeded-map">
-          <iframe src="{{ SITEURL }}/maps/{{ group.grouper.slug }}.html" allowfullscreen width="800" height="600"></iframe>
+          <iframe src="{{ SITEURL }}/maps/{{ group.grouper.slug }}.html" allowfullscreen width="600" height="400"></iframe>
         </div>
         <div class="clear"></div>
+        {% if loop.last %}
+        {% else %} <hr>
+        {% endif %}
     {% endfor %}
   </div>
 {% endblock %}
