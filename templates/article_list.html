@@ -1,14 +1,17 @@
+<hr>
+<h2>Trasa</h2>
+
 {% for article in articles | sort (attribute="date") %}
   <h4 class="thumbnail">
     {{ article.date.strftime("%d %b %Y").upper() }}
-    {% if article.photo_image %}
+    {% if article and article.photo_image %}
       <a href="{{ SITEURL }}/{{ article.url }}"><img src="{{ SITEURL }}/{{ article.photo_image[2] }}"/></a>
     {% endif %}
   </h4>
 
   <article class="post">
 
-    {% if article.title %}
+    {% if article and article.title %}
       <h4 class="title">
         <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
       </h4>

@@ -1,0 +1,19 @@
+            <h4 class="date2">
+                {{ article.date.strftime("%d %b %Y").upper() }}
+               {% if article.photo_image %}
+                           <img src="{{ SITEURL }}/{{ article.photo_image[2] }}"/>
+               {% endif %}
+           </h4>
+
+            <article class="post">
+                {% if article.title %}
+                <h2 class="title">
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permanent Link to &quot;{{ article.title }}&quot;">{{ article.title }}</a>
+                </h2>
+                {% endif %}
+                {{ article.summary }}
+
+                <div class="clear"></div>
+
+                {%   include "article_info.html" %}
+            </article>
